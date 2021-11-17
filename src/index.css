@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'PressStart2P-Regular';
+  src: url('./assets/PressStart2P-Regular.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'PressStart2P-Regular', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content-wrapper {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.controls-row > * {
+  margin-right: 20px;
+}
+
+.controls-row > *:last-of-type {
+  margin-right: 0;
+}
+
+.scoreboard > * {
+  margin-right: 10px;
+}
+
+.scoreboard > *:last-of-type {
+  margin-right: 0;
+}
+
+.scoreboard-item__value {
+  display: inline-block;
+  min-width: 50px;
+}
