@@ -33,6 +33,11 @@ class GameView {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(this.scaleIndex, this.scaleIndex);
   }
+
+  public updateScaleIndex(scaleIndex: number): void {
+    this.scaleIndex = scaleIndex;
+    this.scaleCanvas();
+  }
 }
 
 export default GameView;

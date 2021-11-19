@@ -100,6 +100,11 @@ class GameController {
   public getStatus(): GameStatus {
     return this.status;
   }
+
+  public fixScaleIndexChange(scaleIndex: number): void {
+    this.view.updateScaleIndex(scaleIndex);
+    this.view.drawField(this.data.getField());
+  }
 }
 
 export default GameController;

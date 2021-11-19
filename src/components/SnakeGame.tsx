@@ -74,7 +74,6 @@ const SnakeGame: FC = () => {
     const mediaQueryList = window.matchMedia(pixelRatioMediaQuery);
     const updateScaleIndex = (): void => {
       setScaleIndex(window.devicePixelRatio);
-      generateNewGame();
     };
 
     // Safari does not support addEventListener and removeEventListener at MediaQueryList,
@@ -94,6 +93,10 @@ const SnakeGame: FC = () => {
       };
     }
   }, []);
+
+  useEffect(() => {
+    gameRef.current.fixScaleIndexChange(scaleIndex);
+  }, [scaleIndex]);
 
   useLayoutEffect(() => {
     generateNewGame();
