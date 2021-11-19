@@ -128,6 +128,10 @@ const SnakeGame: FC = () => {
           game.start();
         }
 
+        if (gameStatus === 'pause') {
+          continueGame();
+        }
+
         game.updateDirection(keyCodeToDirectionMap[keyCode]);
       }
 
