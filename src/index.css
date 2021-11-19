@@ -43,3 +43,10 @@ body {
   display: inline-block;
   min-width: 50px;
 }
+
+@media (-webkit-max-device-pixel-ratio: 1),
+ (max-resolution: 1dppx) { 
+  * {
+    font-weight: normal;
+  }
+}
