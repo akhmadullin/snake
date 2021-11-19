@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { GameStatus } from '../types';
 
 type ControlsProps = {
@@ -6,6 +6,14 @@ type ControlsProps = {
   generateNewGame: () => void;
   pauseGame: () => void;
   continueGame: () => void;
+};
+
+const callbackWithBlurRemoving = (callback: () => void) => {
+  return (e: MouseEvent) => {
+    callback();
+    const target = e.target as HTMLButtonElement;
+    target.blur();
+  };
 };
 
 const Controls: FC<ControlsProps> = ({
@@ -16,14 +24,18 @@ const Controls: FC<ControlsProps> = ({
 }) => {
   return (
     <div className="controls-row">
-      <button type="button" className="nes-btn" onClick={generateNewGame}>
+      <button
+        type="button"
+        className="nes-btn"
+        onClick={callbackWithBlurRemoving(generateNewGame)}
+      >
         Play new game
       </button>
       {status === 'active' && (
         <button
           type="button"
           className="nes-btn is-warning"
-          onClick={pauseGame}
+          onClick={callbackWithBlurRemoving(pauseGame)}
         >
           Pause
         </button>
@@ -32,7 +44,7 @@ const Controls: FC<ControlsProps> = ({
         <button
           type="button"
           className="nes-btn is-primary"
-          onClick={continueGame}
+          onClick={callbackWithBlurRemoving(continueGame)}
         >
           Continue
         </button>

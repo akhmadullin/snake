@@ -23,6 +23,12 @@ const arrowsKeyCodes = Object.keys(keyCodeToDirectionMap).map((key) =>
   Number(key)
 );
 
+const enterKeyCode = 13;
+
+const spaceKeyCode = 32;
+
+const gameStatusContorls = [enterKeyCode, spaceKeyCode];
+
 const canvasSize = {
   width: 660,
   height: 440,
@@ -112,15 +118,40 @@ const SnakeGame: FC = () => {
   useEffect(() => {
     const callback = (e: KeyboardEvent): void => {
       const { keyCode } = e;
+      const game = gameRef.current;
+      const gameStatus = game.getStatus();
+
       if (arrowsKeyCodes.includes(keyCode)) {
         e.preventDefault();
-        const game = gameRef.current;
-        if (game.getStatus() === 'unstarted') {
+
+        if (gameStatus === 'unstarted') {
           game.start();
         }
+
         game.updateDirection(keyCodeToDirectionMap[keyCode]);
       }
+
+      if (gameStatusContorls.includes(keyCode) && e.target === document.body) {
+        e.preventDefault();
+
+        if (gameStatus === 'unstarted') {
+          game.start();
+        }
+
+        if (gameStatus === 'active') {
+          pauseGame();
+        }
+
+        if (gameStatus === 'pause') {
+          continueGame();
+        }
+
+        if (gameStatus === 'game over') {
+          generateNewGame();
+        }
+      }
     };
+
     window.addEventListener('keydown', callback);
 
     return () => {
