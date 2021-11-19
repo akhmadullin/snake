@@ -50,3 +50,8 @@ body {
     font-weight: normal;
   }
 }
+
+.nes-btn:focus-visible {
+  outline: 5px solid blue;
+  border-radius: 5px;
+}
