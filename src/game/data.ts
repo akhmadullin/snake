@@ -1,4 +1,4 @@
-import getRandomIntInclusive from '../get-random-int-inclusive';
+import getRandomIntInclusive from '../lib/get-random-int-inclusive';
 import { Field, Point, Food, Snake, Direction } from '../types';
 
 class GameData {

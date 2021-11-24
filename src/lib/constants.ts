@@ -1,4 +1,4 @@
-import { CellType } from './types';
+import { CellType } from '../types';
 
 export const cellSize = 20;
 

@@ -6,7 +6,7 @@ import ScoreBoard from './ScoreBoard';
 import Screen from './Screen';
 import Controls from './Controls';
 import Game from '../game/controller';
-import { cellSize } from '../constants';
+import { cellSize } from '../lib/constants';
 import { GameStatus, Direction } from '../types';
 
 const pixelRatioMediaQuery =

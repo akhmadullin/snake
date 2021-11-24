@@ -1,5 +1,5 @@
 import { Direction, GameStatus } from '../types';
-import Queue from '../queue';
+import Queue from '../lib/queue';
 import GameData from './data';
 import GameView from './view';
 

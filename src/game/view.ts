@@ -1,4 +1,4 @@
-import { cellSize, cellColorDict } from '../constants';
+import { cellSize, cellColorDict } from '../lib/constants';
 import { Field, CellType } from '../types';
 
 class GameView {
