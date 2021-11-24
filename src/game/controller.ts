@@ -1,4 +1,5 @@
 import { Direction, GameStatus } from '../types';
+import Queue from '../queue';
 import GameData from './data';
 import GameView from './view';
 
@@ -14,9 +15,11 @@ class GameController {
 
   private status: GameStatus;
 
-  private intervalId: ReturnType<typeof setInterval>;
+  private directionsToApply: Queue<Direction>;
 
   private callbacks: Callbacks;
+
+  private intervalId: ReturnType<typeof setInterval>;
 
   constructor(
     ctx: CanvasRenderingContext2D,
@@ -27,6 +30,7 @@ class GameController {
   ) {
     this.data = new GameData(columnsAmount, rowsAmount);
     this.view = new GameView(ctx, scaleIndex);
+    this.directionsToApply = new Queue();
     this.callbacks = callbacks;
     this.setStatus('unstarted');
   }
@@ -62,6 +66,12 @@ class GameController {
         this.callbacks.onScoreChange(score);
         this.increaseSpeed();
       }
+
+      if (!this.directionsToApply.isEmpty()) {
+        const direction = this.directionsToApply.dequeue();
+        this.data.updateDirection(direction);
+      }
+
       this.view.drawField(this.data.getField());
     }, this.getSpeed());
   }
@@ -94,7 +104,9 @@ class GameController {
   }
 
   public updateDirection(direction: Direction): void {
-    this.data.updateDirection(direction);
+    if (this.directionsToApply.last !== direction) {
+      this.directionsToApply.enqueue(direction);
+    }
   }
 
   public getStatus(): GameStatus {
